@@ -1,0 +1,90 @@
+/* Container */
+div.p-6 {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #fffbe6;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Headings */
+h2.text-2xl {
+  text-align: center;
+  font-size: 2rem;
+  color: #b58900;
+  margin-bottom: 25px;
+}
+
+/* Form */
+form.flex {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  color: #333;
+}
+
+form textarea {
+  margin-top: 5px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+form input[type="file"] {
+  margin-top: 5px;
+}
+
+/* Button */
+form button {
+  margin-top: 10px;
+  padding: 12px;
+  background-color: #f3c623;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+form button:hover {
+  background-color: #e6b800;
+  transform: scale(1.05);
+}
+
+/* Messages */
+p.error {
+  color: #e74c3c;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+p.success {
+  color: #27ae60;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Profile Image Preview */
+.profile-preview {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-img {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #f3c623;
+}

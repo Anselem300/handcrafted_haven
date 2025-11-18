@@ -1,0 +1,68 @@
+/* === Dashboard Layout === */
+.dashboard-container {
+  min-height: 100vh;
+  padding: 60px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  background: linear-gradient(to bottom right, #fff7e5, #ffefc7);
+}
+
+.dashboard-title {
+  font-size: 40px;
+  font-weight: 900;
+  text-align: center;
+  color: #a66200;
+  margin-bottom: 10px;
+}
+
+.dashboard-subtitle {
+  text-align: center;
+  color: #6b4f2a;
+  font-size: 18px;
+  margin-bottom: 50px;
+}
+
+/* === Cards Grid === */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  padding: 10px;
+}
+
+/* === Card Styling === */
+.dashboard-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(14px);
+  border-radius: 22px;
+  padding: 30px;
+  text-decoration: none;
+  color: #333;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: transform .25s ease, box-shadow .25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dashboard-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
+}
+
+/* === Card Icon === */
+.card-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+/* === Card Title === */
+.dashboard-card h3 {
+  font-size: 22px;
+  margin-bottom: 6px;
+  color: #b7791f;
+}
+
+/* === Card Description === */
+.dashboard-card p {
+  font-size: 15px;
+  color: #4a3b26;
+}

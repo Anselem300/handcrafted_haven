@@ -4,6 +4,9 @@ import "./globals.css";
 import { ReactNode } from "react";
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import "../styles/auth.css";
+import "../styles/dashboard.css";
+import "../styles/profile.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
