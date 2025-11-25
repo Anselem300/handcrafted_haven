@@ -9,7 +9,7 @@ export default function Hero() {
             <div className={styles.content}>
                 <h1>Discover the Art of Handcrafted Excellence</h1>
                 <h2>Celebrate creativity, support artisans, and find treasures made with passion and purpose.</h2>
-                <Link href="#Featured" className={styles.cta}>Explore Now <ArrowRight size={20} className={styles.arrowIcon} /></Link>
+                <Link href="./shop" className={styles.cta}>Explore Now <ArrowRight size={20} className={styles.arrowIcon} /></Link>
             </div>
         </section>
     )

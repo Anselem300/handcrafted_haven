@@ -45,6 +45,7 @@
   display: none;
   color: #5a3825;
   cursor: pointer;
+  width: auto;
 }
 
 /* 🌙 Mobile layout */

@@ -68,22 +68,42 @@ export async function PATCH(
 ) {
   try {
     const user = await getUserFromRequest();
-    if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!user)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    const params = await context.params;
-    const productId = parseInt(params.id, 10);
+    // Must await params in Next.js 15+
+    const { id } = await context.params;
+    const productId = parseInt(id, 10);
 
     const body: UpdateBody = await req.json();
-    const data: UpdateData = { ...body };
 
-    if (body.imageBase64) {
-      const uploadResult = await uploadImage(body.imageBase64);
-      data.imageUrl = uploadResult.secure_url;
-      delete data.imageBase64;
+    // Remove imageBase64 from data
+    const { imageBase64, ...rest } = body;
+    const data: UpdateData = { ...rest };
+
+    // Convert price field to float
+    if (typeof data.price === "string") {
+      data.price = parseFloat(data.price);
     }
 
-    const product = await prisma.product.updateMany({
-      where: { id: productId, userId: user.id },
+    // Upload new image if provided
+    if (imageBase64) {
+      const uploadResult = await uploadImage(imageBase64);
+      data.imageUrl = uploadResult.secure_url;
+    }
+
+    // Check ownership
+    const existing = await prisma.product.findUnique({
+      where: { id: productId },
+    });
+
+    if (!existing || existing.userId !== user.id) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+
+    // Update product in DB
+    const product = await prisma.product.update({
+      where: { id: productId },
       data,
     });
 
@@ -93,6 +113,7 @@ export async function PATCH(
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
+
 
 // DELETE /api/products/:id
 export async function DELETE(

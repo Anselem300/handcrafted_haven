@@ -71,7 +71,62 @@ export default function ProfilePage() {
     if (data.profile) setProfile(data.profile);
   }
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+  const fadeAnimation: React.CSSProperties = {
+    animationName: "fade",
+    animationDuration: "1.5s",
+    animationIterationCount: "infinite",
+    animationTimingFunction: "ease-in-out",
+  };
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "200px",
+      }}
+    >
+      {/* Spinner */}
+      <div
+        style={{
+          width: "40px",
+          height: "40px",
+          border: "4px solid #ccc",
+          borderTop: "4px solid #22c55e",
+          borderRadius: "50%",
+          animation: "spin 1s linear infinite",
+          marginBottom: "1rem",
+        }}
+      />
+
+      {/* Loading text */}
+      <p
+        style={{
+          color: "white",
+          fontWeight: 600,
+          ...fadeAnimation,
+        }}
+      >
+        Loading profile...
+      </p>
+
+      {/* Inline keyframes for the spinner */}
+      <style>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        @keyframes fade {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 1; }
+        }
+      `}</style>
+    </div>
+  );
+ }
 
   return (
     <div className="p-6 max-w-3xl mx-auto">
