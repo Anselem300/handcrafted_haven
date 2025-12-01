@@ -127,6 +127,7 @@ export default function ProductsPage() {
 {products.length === 0 && (
   <div
     style={{
+      marginTop: "1rem",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
