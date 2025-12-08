@@ -8,31 +8,39 @@ datasource db {
 }
 
 model User {
-  id        Int           @id @default(autoincrement())
+  id        Int            @id @default(autoincrement())
   name      String?
-  email     String        @unique
-  password  String        // hashed password
-  createdAt DateTime      @default(now())
+  email     String         @unique
+  password  String // hashed password
+  createdAt DateTime       @default(now())
   profile   SellerProfile?
   products  Product[]
 }
 
 model SellerProfile {
-  id          Int      @id @default(autoincrement())
-  userId      Int      @unique
-  bio         String?
-  story       String?
-  profilePic  String?
-  user        User     @relation(fields: [userId], references: [id])
+  id         Int     @id @default(autoincrement())
+  userId     Int     @unique
+  bio        String?
+  story      String?
+  profilePic String?
+  user       User    @relation(fields: [userId], references: [id])
 }
 
 model Product {
-  id          Int      @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   userId      Int
   name        String
   description String
   price       Float
   imageUrl    String
-  createdAt   DateTime @default(now())
-  user        User     @relation(fields: [userId], references: [id])
+  createdAt   DateTime   @default(now())
+  user        User       @relation(fields: [userId], references: [id])
+  downloads   Download[]
+}
+
+model Download {
+  id        Int      @id @default(autoincrement())
+  product   Product  @relation(fields: [productId], references: [id])
+  productId Int
+  createdAt DateTime @default(now())
 }

@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { FiEye, FiEyeOff } from "react-icons/fi"; // 👈 added icons
 
 interface LoginResponse {
   user?: {
@@ -18,6 +19,9 @@ export default function LoginPage() {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+
+  // 👇 NEW: toggle visibility
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
@@ -60,15 +64,31 @@ export default function LoginPage() {
             />
           </div>
 
-          <div className="input-group">
+          <div className="input-group" style={{ position: "relative" }}>
             <label>Password</label>
+
             <input
-              type="password"
+              type={showPassword ? "text" : "password"} // 👈 toggle type
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="********"
               required
             />
+
+            {/* 👁️ Eye Icon */}
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              style={{
+                position: "absolute",
+                right: "10px",
+                top: "38px",
+                cursor: "pointer",
+                fontSize: "1.2rem",
+                color: "#666",
+              }}
+            >
+              {showPassword ? <FiEyeOff /> : <FiEye />}
+            </span>
           </div>
 
           <button type="submit" disabled={loading}>
